@@ -169,3 +169,13 @@ unbalanced tags
 .
 <blockquote></blockquote>
 .
+
+.
+<a href="http://example.com">
+.
+.
+
+.
+</a>
+.
+.
