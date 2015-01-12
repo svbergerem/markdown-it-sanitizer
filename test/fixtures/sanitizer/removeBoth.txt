@@ -116,10 +116,10 @@ balanced tags
 <ol start="42">text</ol>
 <p>text</p>
 <pre>text</pre>
+<s>text</s>
 <sub>text</sub>
 <sup>text</sup>
 <strong>text</strong>
-<strike>text</strike>
 <ul>text</ul>
 .
 <li>text</li>
@@ -127,10 +127,10 @@ balanced tags
 <ol start="42">text</ol>
 <p>text</p>
 <pre>text</pre>
+<s>text</s>
 <sub>text</sub>
 <sup>text</sup>
 <strong>text</strong>
-<strike>text</strike>
 <ul>text</ul>
 .
 

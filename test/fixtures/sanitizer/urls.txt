@@ -1,0 +1,87 @@
+images
+.
+<img src="http://example.com">
+.
+<p><img src="http://example.com" alt="" title=""></p>
+.
+
+.
+<img src="https://example.com">
+.
+<p><img src="https://example.com" alt="" title=""></p>
+.
+
+.
+<img src="ftp://example.com">
+.
+<p>&lt;img src=&quot;ftp://example.com&quot;&gt;</p>
+.
+
+.
+<img src="hhttp://example.com">
+.
+<p>&lt;img src=&quot;hhttp://example.com&quot;&gt;</p>
+.
+
+.
+<img src="javascript://example.com">
+.
+<p>&lt;img src=&quot;javascript://example.com&quot;&gt;</p>
+.
+
+.
+<img src="javascript:example.com">
+.
+<p>&lt;img src=&quot;javascript:example.com&quot;&gt;</p>
+.
+
+
+
+links
+.
+<a href="http://example.com">text</a>
+.
+<p><a href="http://example.com" title="" target="_blank">text</a></p>
+.
+
+.
+<a href="https://example.com">text</a>
+.
+<p><a href="https://example.com" title="" target="_blank">text</a></p>
+.
+
+.
+<a href="ftp://example.com">text</a>
+.
+<p><a href="ftp://example.com" title="" target="_blank">text</a></p>
+.
+
+.
+<a href="mailto:user@example.com">text</a>
+.
+<p><a href="mailto:user@example.com" title="" target="_blank">text</a></p>
+.
+
+.
+<a href="xmpp:user@example.com">text</a>
+.
+<p><a href="xmpp:user@example.com" title="" target="_blank">text</a></p>
+.
+
+.
+<a href="javascript://example.com">text</a>
+.
+<p>&lt;a href=&quot;javascript://example.com&quot;&gt;text&lt;/a&gt;</p>
+.
+
+.
+<a href="javascript:example.com">text</a>
+.
+<p>&lt;a href=&quot;javascript:example.com&quot;&gt;text&lt;/a&gt;</p>
+.
+
+.
+<a href="data:example.com">text</a>
+.
+<p>&lt;a href=&quot;data:example.com&quot;&gt;text&lt;/a&gt;</p>
+.

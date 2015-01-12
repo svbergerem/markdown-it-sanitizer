@@ -25,7 +25,12 @@ describe('markdown-it-sanitizer', function () {
 
   it('sanitizes the input with default values (both false)', function () {
     md.use(require('../'));
-    generate(path.join(__dirname, 'fixtures/sanitizer/default.txt'), md);
+    generate(path.join(__dirname, 'fixtures/sanitizer/keepAll.txt'), md);
+  });
+
+  it('only accepts a few protocolls for urls', function () {
+    md.use(require('../'));
+    generate(path.join(__dirname, 'fixtures/sanitizer/urls.txt'), md);
   });
 
   it('accepts removeUnknown as an option', function () {

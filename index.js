@@ -41,7 +41,10 @@ module.exports = function sanitizer_plugin(md, options) {
         url   = match[1];
         alt   = (typeof match[2] !== 'undefined') ? match[2] : '';
         title = (typeof match[3] !== 'undefined') ? match[3] : '';
-        return '<img src="' + url + '" alt="' + alt + '" title="' + title + '">';
+        // only http and https are allowed for images
+        if (/^https?:\/\//i.test(url)) {
+          return '<img src="' + url + '" alt="' + alt + '" title="' + title + '">';
+        }
       }
 
       // links
@@ -49,7 +52,10 @@ module.exports = function sanitizer_plugin(md, options) {
       if (match) {
         url   = match[1];
         title = (typeof match[2] !== 'undefined') ? match[2] : '';
-        return '<a href="' + url + '" title="' + title + '" target="_blank" sanitize>';
+        // only http, https, ftp, mailto and xmpp are allowed for links
+        if (/^(?:https?:\/\/|ftp:\/\/|mailto:|xmpp:)/i.test(url)) {
+          return '<a href="' + url + '" title="' + title + '" target="_blank" sanitize>';
+        }
       }
       match = tag.match(/<\/a>/i);
       if (match) {
@@ -63,7 +69,7 @@ module.exports = function sanitizer_plugin(md, options) {
       }
 
       // whitelisted tags
-      match = tag.match(/<(\/?)(b|blockquote|code|em|h[1-6]|li|ol(?: start="\d+")?|p|pre|sub|sup|strong|strike|ul)>/i);
+      match = tag.match(/<(\/?)(b|blockquote|code|em|h[1-6]|li|ol(?: start="\d+")?|p|pre|s|sub|sup|strong|ul)>/i);
       if (match && !/<\/ol start="\d+"/i.test(tag)) {
         return '<' + match[1] + match[2].toLowerCase() + ' sanitize>';
       }
@@ -81,7 +87,7 @@ module.exports = function sanitizer_plugin(md, options) {
 
     // <a href="url" title="(optional)" target="_blank" sanitize>
     var regexpLinkOpen = RegExp('<a href="' + urlRegex + '" title="[^"<>]*" target="_blank" sanitize>', 'g');
-    var regexpTag = /<(b|blockquote|code|em|h[1-6]|li|ol(?: start="\d+")?|p|pre|sub|sup|strong|strike|ul) sanitize>/;
+    var regexpTag = /<(b|blockquote|code|em|h[1-6]|li|ol(?: start="\d+")?|p|pre|s|sub|sup|strong|ul) sanitize>/;
 
     var match,
         regexp,
