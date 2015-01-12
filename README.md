@@ -6,6 +6,26 @@
 
 > sanitizer plugin for [markdown-it](https://github.com/markdown-it/markdown-it) markdown parser.
 
+## Accepted tags
+
+All tags are parsed case insensitive.
+
+### Balanced
+`<b>`, `<blockquote>`, `<code>`, `<em>`, `<h1>`, ..., `<h6>`, `<li>`, `<ol>`, `<ol start="42">`, `<p>`, `<pre>`, `<sub>`, `<sup>`, `<strong>`, `<strike>`, `<ul>`
+
+### Standalone
+`<br>`, `<hr>`
+
+### Links
+`<a href="http://example.com" title="link">text</a>`
+
+The `title` attribute is optional.
+
+### Images
+`<img src="http://example.com" alt="cat" title="image">`
+
+The `alt` and `title` attributes are optional.
+
 ## Install
 
 node.js, bower:
@@ -26,8 +46,31 @@ var md = require('markdown-it')({ html: true })
 md.render('<b>test<p></b>'); // => '<p><b>test</b></p>'
 ```
 
-_Differences in browser._ If you load the script directly into the page, without
-package system, module will add itself globally as `window.markdownitSanitizer`.
+#### Advanced
+
+For not whitelisted tags and tags that don't have a matching opening/closing tag you can define whether you would like to remove or escape them. Here is an example with default values:
+
+```js
+var md = require('markdown-it')({ html: true })
+            .use(require('markdown-it-sanitizer'), {
+              removeUnbalanced: false,
+              removeUnknown: false
+            });
+
+// unknown tag
+md.render('<u>test</u>'); // => '<p>&lt;u&gt;test&lt;/u&gt;</p>'
+// unknown tag with removeUnknown: true
+md.render('<u>test</u>'); // => '<p>test</p>'
+
+// unbalanced tags
+md.render('<b>test</em>'); // => '<p>&lt;b&gt;test&lt;/em&gt;</p>'
+// unbalanced tags with removeUnbalanced: true
+md.render('<b>test</em>'); // => '<p>test</p>'
+
+```
+
+_Differences in the browser._ If you load the script directly into the page, without
+package system, the module will add itself globally as `window.markdownitSanitizer`.
 
 ## License
 

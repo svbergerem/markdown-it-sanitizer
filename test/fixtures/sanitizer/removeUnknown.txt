@@ -188,23 +188,22 @@ unknown tags
 .
 <u></u>
 .
-<p>&lt;u&gt;&lt;/u&gt;</p>
 .
 
 .
 <p class="test"></p>
 .
-<p>&lt;p class=&quot;test&quot;&gt;&lt;/p&gt;</p>
+<p>&lt;/p&gt;</p>
 .
 
 .
 <a href="http://example.com" class="link">text</a>
 .
-<p>&lt;a href=&quot;http://example.com&quot; class=&quot;link&quot;&gt;text&lt;/a&gt;</p>
+<p>text&lt;/a&gt;</p>
 .
 
 .
 <a href=http://example.com>text</a>
 .
-<p>&lt;a href=http://example.com&gt;text&lt;/a&gt;</p>
+<p>text&lt;/a&gt;</p>
 .

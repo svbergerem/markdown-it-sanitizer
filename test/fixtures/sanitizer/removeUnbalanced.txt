@@ -156,31 +156,28 @@ unbalanced tags
 .
 <ul>
 .
-<p>&lt;ul&gt;</p>
 .
 
 .
 <ul><li></ul>
 .
-<ul>&lt;li&gt;</ul>
+<ul></ul>
 .
 
 .
 </p><blockquote><p></blockquote>
 .
-<p>&lt;/p&gt;<blockquote>&lt;p&gt;</blockquote></p>
+<blockquote></blockquote>
 .
 
 .
 <a href="http://example.com">
 .
-<p>&lt;a href=&quot;http://example.com&quot; title=&quot;&quot; target=&quot;_blank&quot;&gt;</p>
 .
 
 .
 </a>
 .
-<p>&lt;/a&gt;</p>
 .
 
 
@@ -194,17 +191,17 @@ unknown tags
 .
 <p class="test"></p>
 .
-<p>&lt;p class=&quot;test&quot;&gt;&lt;/p&gt;</p>
+<p>&lt;p class=&quot;test&quot;&gt;</p>
 .
 
 .
 <a href="http://example.com" class="link">text</a>
 .
-<p>&lt;a href=&quot;http://example.com&quot; class=&quot;link&quot;&gt;text&lt;/a&gt;</p>
+<p>&lt;a href=&quot;http://example.com&quot; class=&quot;link&quot;&gt;text</p>
 .
 
 .
 <a href=http://example.com>text</a>
 .
-<p>&lt;a href=http://example.com&gt;text&lt;/a&gt;</p>
+<p>&lt;a href=http://example.com&gt;text</p>
 .
