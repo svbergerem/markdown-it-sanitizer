@@ -1,0 +1,8 @@
+.
+oh, cool, nginx 1.7.9 supports json autoindexes: http://nginx.org/en/docs/http/ngx_http_autoindex_module.html#autoindex_format
+
+#nginx #<3
+.
+<p>oh, cool, nginx 1.7.9 supports json autoindexes: <a href="http://nginx.org/en/docs/http/ngx_http_autoindex_module.html#autoindex_format" target="_blank">http://nginx.org/en/docs/http/ngx_http_autoindex_module.html#autoindex_format</a></p>
+<p><a href="/tags/nginx" class="tag">#nginx</a> <a href="/tags/<3" class="tag">#&lt;3</a></p>
+.

@@ -49,7 +49,7 @@ describe('markdown-it-sanitizer', function () {
   });
 
   it('works with other plugins on real world examples', function() {
-    md.use(require('../'), { removeUnbalanced: true, removeUnknown: false })
+    md.use(require('../'), { removeUnbalanced: false, removeUnknown: false })
       .set({ breaks: true })
       .use(inline, 'utf8_symbols', 'text', function (tokens, idx) {
           tokens[idx].content = tokens[idx].content.replace(/<->/g, '↔')
@@ -62,7 +62,7 @@ describe('markdown-it-sanitizer', function () {
       .use(inline, 'link_new_window', 'link_open', function (tokens, idx) {
         tokens[idx].target = '_blank';
       })
-      .use(hashtag)
+      .use(hashtag, { hashtagRegExp: '[\\u0080-\\uFFFF\\w\\-]+|<3' })
       .use(mention, {
         diaspora_id: 'user@pod.tld',
         guid: 1337

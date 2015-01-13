@@ -1,5 +1,5 @@
 .
 <p>The sportsing commentary has begun! This is what all of it sounds like to me, boiled down to its essence. <a href=http://vectorbelly.com/ON177.gif>http://vectorbelly.com/ON177.gif</a></p>
 .
-<p>The sportsing commentary has begun! This is what all of it sounds like to me, boiled down to its essence. &lt;a href=http://vectorbelly.com/ON177.gif&gt;http://vectorbelly.com/ON177.gif</p>
+<p>The sportsing commentary has begun! This is what all of it sounds like to me, boiled down to its essence. &lt;a href=http://vectorbelly.com/ON177.gif&gt;http://vectorbelly.com/ON177.gif&lt;/a&gt;</p>
 .
