@@ -1,4 +1,4 @@
-/*! markdown-it-sanitizer 0.1.0 https://github.com/svbergerem/markdown-it-sanitizer @license MIT */!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var n;"undefined"!=typeof window?n=window:"undefined"!=typeof global?n=global:"undefined"!=typeof self&&(n=self),n.markdownitSanitizer=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/*! markdown-it-sanitizer 0.2.0 https://github.com/svbergerem/markdown-it-sanitizer @license MIT */!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var n;"undefined"!=typeof window?n=window:"undefined"!=typeof global?n=global:"undefined"!=typeof self&&(n=self),n.markdownitSanitizer=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
 var ip = require('ip-regex').v4().source;
@@ -99,7 +99,10 @@ module.exports = function sanitizer_plugin(md, options) {
         url   = match[1];
         alt   = (typeof match[2] !== 'undefined') ? match[2] : '';
         title = (typeof match[3] !== 'undefined') ? match[3] : '';
-        return '<img src="' + url + '" alt="' + alt + '" title="' + title + '">';
+        // only http and https are allowed for images
+        if (/^https?:\/\//i.test(url)) {
+          return '<img src="' + url + '" alt="' + alt + '" title="' + title + '">';
+        }
       }
 
       // links
@@ -107,7 +110,10 @@ module.exports = function sanitizer_plugin(md, options) {
       if (match) {
         url   = match[1];
         title = (typeof match[2] !== 'undefined') ? match[2] : '';
-        return '<a href="' + url + '" title="' + title + '" target="_blank" sanitize>';
+        // only http, https, ftp, mailto and xmpp are allowed for links
+        if (/^(?:https?:\/\/|ftp:\/\/|mailto:|xmpp:)/i.test(url)) {
+          return '<a href="' + url + '" title="' + title + '" target="_blank" sanitize>';
+        }
       }
       match = tag.match(/<\/a>/i);
       if (match) {
@@ -121,7 +127,7 @@ module.exports = function sanitizer_plugin(md, options) {
       }
 
       // whitelisted tags
-      match = tag.match(/<(\/?)(b|blockquote|code|em|h[1-6]|li|ol(?: start="\d+")?|p|pre|sub|sup|strong|strike|ul)>/i);
+      match = tag.match(/<(\/?)(b|blockquote|code|em|h[1-6]|li|ol(?: start="\d+")?|p|pre|s|sub|sup|strong|ul)>/i);
       if (match && !/<\/ol start="\d+"/i.test(tag)) {
         return '<' + match[1] + match[2].toLowerCase() + ' sanitize>';
       }
@@ -139,7 +145,7 @@ module.exports = function sanitizer_plugin(md, options) {
 
     // <a href="url" title="(optional)" target="_blank" sanitize>
     var regexpLinkOpen = RegExp('<a href="' + urlRegex + '" title="[^"<>]*" target="_blank" sanitize>', 'g');
-    var regexpTag = /<(b|blockquote|code|em|h[1-6]|li|ol(?: start="\d+")?|p|pre|sub|sup|strong|strike|ul) sanitize>/;
+    var regexpTag = /<(b|blockquote|code|em|h[1-6]|li|ol(?: start="\d+")?|p|pre|s|sub|sup|strong|ul) sanitize>/;
 
     var match,
         regexp,
