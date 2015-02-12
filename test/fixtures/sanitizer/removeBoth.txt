@@ -154,8 +154,9 @@ test</p></li></ul>
 
 unbalanced tags
 .
-<ul>
+<ul>t
 .
+t
 .
 
 .
@@ -171,25 +172,29 @@ unbalanced tags
 .
 
 .
-<a href="http://example.com">
+<a href="http://example.com">t
 .
+<p>t</p>
 .
 
 .
-</a>
+</a>t
 .
+<p>t</p>
 .
 
 
 unknown tags
 .
-<u></u>
+<u></u>t
 .
+<p>t</p>
 .
 
 .
-<p class="test"></p>
+<p class="test"></p>t
 .
+t
 .
 
 .

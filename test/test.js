@@ -28,11 +28,6 @@ describe('markdown-it-sanitizer', function () {
     generate(path.join(__dirname, 'fixtures/sanitizer/keepAll.txt'), md);
   });
 
-  it('only accepts a few protocolls for urls', function () {
-    md.use(require('../'));
-    generate(path.join(__dirname, 'fixtures/sanitizer/urls.txt'), md);
-  });
-
   it('accepts removeUnknown as an option', function () {
     md.use(require('../'), { removeUnbalanced: false, removeUnknown: true });
     generate(path.join(__dirname, 'fixtures/sanitizer/removeUnknown.txt'), md);
@@ -46,6 +41,16 @@ describe('markdown-it-sanitizer', function () {
   it('accepts removeUnknown and removeUnbalanced as options', function () {
     md.use(require('../'), { removeUnbalanced: true, removeUnknown: true });
     generate(path.join(__dirname, 'fixtures/sanitizer/removeBoth.txt'), md);
+  });
+
+  it('only accepts a few protocolls for urls', function () {
+    md.use(require('../'));
+    generate(path.join(__dirname, 'fixtures/sanitizer/urls.txt'), md);
+  });
+
+  it('keeps other commonmark features', function () {
+    md.use(require('../'));
+    generate(path.join(__dirname, 'fixtures/sanitizer/notags.txt'), md);
   });
 
   it('works with other plugins on real world examples', function() {
@@ -62,19 +67,26 @@ describe('markdown-it-sanitizer', function () {
       .use(inline, 'link_new_window', 'link_open', function (tokens, idx) {
         tokens[idx].target = '_blank';
       })
-      .use(hashtag, { hashtagRegExp: '[\\u0080-\\uFFFF\\w\\-]+|<3' })
+      .use(hashtag, {
+        hashtagRegExp: '[\\u0080-\\uFFFF\\w\\-]+|<3',
+        preceding: '^|\\s'
+      })
       .use(mention, {
-        diaspora_id: 'user@pod.tld',
-        guid: 1337
-      },
-      {
-        diaspora_id: 'evil@pod.tld',
-        guid: 666
-      },
-      {
-        handle: 'foo@bar.baz',
-        url: '/my/awesome/url',
-        guid: 42
+        mentions: [
+          {
+            diaspora_id: 'user@pod.tld',
+            guid: 1337
+          },
+          {
+            diaspora_id: 'evil@pod.tld',
+            guid: 666
+          },
+          {
+            handle: 'foo@bar.baz',
+            url: '/my/awesome/url',
+            guid: 42
+          }
+        ]
       });
     // Bootstrap table markup
     md.renderer.rules.table_open = function () { return '<table class="table table-striped">\n'; };

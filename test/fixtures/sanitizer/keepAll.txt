@@ -156,7 +156,7 @@ unbalanced tags
 .
 <ul>
 .
-<p>&lt;ul&gt;</p>
+&lt;ul&gt;
 .
 
 .
@@ -168,7 +168,7 @@ unbalanced tags
 .
 </p><blockquote><p></blockquote>
 .
-<p>&lt;/p&gt;<blockquote>&lt;p&gt;</blockquote></p>
+&lt;/p&gt;<blockquote>&lt;p&gt;</blockquote>
 .
 
 .
@@ -194,7 +194,7 @@ unknown tags
 .
 <p class="test"></p>
 .
-<p>&lt;p class=&quot;test&quot;&gt;&lt;/p&gt;</p>
+&lt;p class=&quot;test&quot;&gt;&lt;/p&gt;
 .
 
 .

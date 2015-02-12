@@ -1,3 +1,7 @@
+# 0.2.1
+
+* Refactor sanitizer, should be now one of the last rules
+
 # 0.2.0
 
 * Added options for removing or escaping unbalanced/unknown tags

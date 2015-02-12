@@ -1,0 +1,23 @@
+inside of code blocks
+.
+```
+<unknown tag>
+```
+.
+<pre><code>&lt;unknown tag&gt;
+</code></pre>
+.
+
+.
+`<unknown tag>`
+.
+<p><code>&lt;unknown tag&gt;</code></p>
+.
+
+
+autolinks
+.
+<https://ddg.com>
+.
+<p><a href="https://ddg.com">https://ddg.com</a></p>
+.

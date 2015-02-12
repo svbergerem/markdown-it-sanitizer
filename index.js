@@ -14,8 +14,23 @@ module.exports = function sanitizer_plugin(md, options) {
   options = options ? options : {};
   var removeUnknown = (typeof options.removeUnknown !== 'undefined') ? options.removeUnknown : false;
   var removeUnbalanced = (typeof options.removeUnbalanced !== 'undefined') ? options.removeUnbalanced : false;
+  var j;
 
-  function stripTags(state) {
+
+  var allowedTags = [ 'a', 'b', 'blockquote', 'code', 'em', 'h1', 'h2', 'h3', 'h4', 'h5',
+                     'h6', 'li', 'ol', 'p', 'pre', 's', 'sub', 'sup', 'strong', 'ul' ];
+  var openTagCount = new Array(allowedTags.length);
+  var removeTag = new Array(allowedTags.length);
+  for (j = 0; j < allowedTags.length; j++) { openTagCount[j] = 0; }
+  for (j = 0; j < allowedTags.length; j++) { removeTag[j] = false; }
+
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  //          REPLACE UNKNOWN TAGS
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+
+  function replaceUnknownTags(str) {
     // <a href="url" title="(optional)"></a>
     var patternLinkOpen = '<a\\shref="(' + urlRegex + ')"(?:\\stitle="([^"<>]*)")?>';
     var regexpLinkOpen = RegExp(patternLinkOpen, 'i');
@@ -29,8 +44,8 @@ module.exports = function sanitizer_plugin(md, options) {
      * it doesnt have '<' or '>' in between
      * -> it's a tag!
      */
-    state.src = state.src.replace(/<[^<>]*>?/gi, function (tag) {
-      var match, url, alt, title;
+    str = str.replace(/<[^<>]*>?/gi, function (tag) {
+      var match, url, alt, title, tagnameIndex;
 
       // '<->', '<- ' and '<3 ' look nice, they are harmless
       if (/(^<->|^<-\s|^<3\s)/.test(tag)) { return tag; }
@@ -48,18 +63,24 @@ module.exports = function sanitizer_plugin(md, options) {
       }
 
       // links
+      tagnameIndex = allowedTags.indexOf('a');
       match = tag.match(regexpLinkOpen);
       if (match) {
-        url   = match[1];
         title = (typeof match[2] !== 'undefined') ? match[2] : '';
+        url   = match[1];
         // only http, https, ftp, mailto and xmpp are allowed for links
         if (/^(?:https?:\/\/|ftp:\/\/|mailto:|xmpp:)/i.test(url)) {
-          return '<a href="' + url + '" title="' + title + '" target="_blank" sanitize>';
+          openTagCount[tagnameIndex] += 1;
+          return '<a href="' + url + '" title="' + title + '" target="_blank">';
         }
       }
-      match = tag.match(/<\/a>/i);
+      match = /<\/a>/i.test(tag);
       if (match) {
-        return '</a sanitize>';
+        openTagCount[tagnameIndex] -= 1;
+        if (openTagCount[tagnameIndex] < 0) {
+          removeTag[tagnameIndex] = true;
+        }
+        return '</a>';
       }
 
       // standalone tags
@@ -71,7 +92,16 @@ module.exports = function sanitizer_plugin(md, options) {
       // whitelisted tags
       match = tag.match(/<(\/?)(b|blockquote|code|em|h[1-6]|li|ol(?: start="\d+")?|p|pre|s|sub|sup|strong|ul)>/i);
       if (match && !/<\/ol start="\d+"/i.test(tag)) {
-        return '<' + match[1] + match[2].toLowerCase() + ' sanitize>';
+        tagnameIndex = allowedTags.indexOf(match[2].toLowerCase().split(' ')[0]);
+        if (match[1] === '/') {
+          openTagCount[tagnameIndex] -= 1;
+        } else {
+          openTagCount[tagnameIndex] += 1;
+        }
+        if (openTagCount[tagnameIndex] < 0) {
+          removeTag[tagnameIndex] = true;
+        }
+        return '<' + match[1] + match[2].toLowerCase() + '>';
       }
 
       // other tags we don't recognize
@@ -80,88 +110,97 @@ module.exports = function sanitizer_plugin(md, options) {
       }
       return escapeHtml(tag);
     });
+
+    return str;
   }
 
+
+  function sanitizeInlineAndBlock(state) {
+    var i, blkIdx, inlineTokens;
+    // reset counts
+    for (j = 0; j < allowedTags.length; j++) { openTagCount[j] = 0; }
+    for (j = 0; j < allowedTags.length; j++) { removeTag[j] = false; }
+
+
+    for (blkIdx = 0; blkIdx < state.tokens.length; blkIdx++) {
+      if (state.tokens[blkIdx].type === 'html_block') {
+        state.tokens[blkIdx].content = replaceUnknownTags(state.tokens[blkIdx].content);
+      }
+      if (state.tokens[blkIdx].type !== 'inline') {
+        continue;
+      }
+
+      inlineTokens = state.tokens[blkIdx].children;
+      for (i = 0; i < inlineTokens.length; i++) {
+        if (inlineTokens[i].type === 'html_inline') {
+          inlineTokens[i].content = replaceUnknownTags(inlineTokens[i].content);
+        }
+      }
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  //          REPLACE UNBALANCED TAGS
+  /////////////////////////////////////////////////////////////////////////////////////////////////
 
   function balance(state) {
 
-    // <a href="url" title="(optional)" target="_blank" sanitize>
-    var regexpLinkOpen = RegExp('<a href="' + urlRegex + '" title="[^"<>]*" target="_blank" sanitize>', 'g');
-    var regexpTag = /<(b|blockquote|code|em|h[1-6]|li|ol(?: start="\d+")?|p|pre|s|sub|sup|strong|ul) sanitize>/;
+    var blkIdx, inlineTokens;
 
-    var match,
-        regexp,
-        startpos,
-        endpos,
-        closingpos,
-        tagname,
-        src = state.src;
-
-    // ' sanitize>'.length = 10
-    function removeSanitize(tag) { return tag.slice(0, -10) + '>'; }
-
-    // for two matching tags this removes the ' sanitize'
-    function desanitizeMatchingTags(string, tagname, startpos, endpos, closingpos) {
-      return removeSanitize(string.slice(0, endpos))         // the opening tag without ' sanitize'
-           + string.slice(endpos, closingpos)                // everything between opening and closing tag
-           + '</' + tagname + '>'                            // the closing tag
-           + string.slice(closingpos + tagname.length + 12); // everything behind the closing tag
-                                                             // ('</' + ' sanitize>').length = 12
-    }
-
-    function replaceUnbalancedTag(string, tag) {
-      if (removeUnbalanced === true) {
-        string = string.replace(tag, '');
+    function replaceUnbalancedTag(str, tagname) {
+      var openingRegexp, closingRegexp;
+      if (tagname === 'a') {
+        openingRegexp = RegExp('<a href="' + urlRegex + '" title="[^"<>]*" target="_blank">', 'g');
+      } else if (tagname === 'ol') {
+        openingRegexp = /<ol(?: start="\d+")?>/g;
       } else {
-        string = string.replace(tag, function(m) { return escapeHtml(removeSanitize(m)); });
+        openingRegexp = RegExp('<' + tagname + '>', 'g');
       }
-      return string;
-    }
-
-    // pair links
-    for (match = src.match(regexpLinkOpen); match !== null; match = src.match(regexpLinkOpen)) {
-      tagname = 'a';
-      startpos = src.indexOf(match[0]);
-      endpos   = startpos + match[0].length;
-      closingpos = src.indexOf('</a sanitize>', endpos);
-
-      if (closingpos >= 0) { // we found a closing tag
-        src = desanitizeMatchingTags(src, tagname, startpos, endpos, closingpos);
-      } else { // no closing tag -> replace
-        src = replaceUnbalancedTag(src, match[0]);
+      closingRegexp = RegExp('</' + tagname + '>', 'g');
+      if (removeUnbalanced === true) {
+        str = str.replace(openingRegexp, '');
+        str = str.replace(closingRegexp, '');
+      } else {
+        str = str.replace(openingRegexp, function(m) { return escapeHtml(m); });
+        str = str.replace(closingRegexp, function(m) { return escapeHtml(m); });
       }
+      return str;
     }
 
-    // remaining </a sanitize>
-    regexp = /<\/a sanitize>/g;
-    while (regexp.test(src) === true) {
-      src = replaceUnbalancedTag(src, regexp);
+    function replaceAllUnbalancedTags(str) {
+      var i;
+      for (i = 0; i < allowedTags.length; i++) {
+        if (removeTag[i] === true) {
+          str = replaceUnbalancedTag(str, allowedTags[i]);
+        }
+      }
+      return str;
     }
 
-    // pair other tags
-    for (match = src.match(regexpTag); match !== null; match = src.match(regexpTag)) {
-      // ol start="5" -> ol
-      tagname = match[1].split(' ')[0];
-      startpos = src.indexOf(match[0]);
-      endpos   = startpos + match[0].length;
-      closingpos = src.indexOf('</' + tagname + ' sanitize>', endpos);
-
-      if (closingpos >= 0) { // we found a closing tag
-        src = desanitizeMatchingTags(src, tagname, startpos, endpos, closingpos);
-      } else { // no closing tag -> replace
-        src = replaceUnbalancedTag(src, match[0]);
+    for (j = 0; j < allowedTags.length; j++) {
+      if (openTagCount[j] !== 0) {
+        removeTag[j] = true;
       }
     }
 
-    // remaining </tagName sanitize>
-    regexp = /<\/\w+ sanitize>/g;
-    while (regexp.test(src) === true) {
-      src = replaceUnbalancedTag(src, regexp);
+    // replace unbalanced tags
+    for (blkIdx = 0; blkIdx < state.tokens.length; blkIdx++) {
+      if (state.tokens[blkIdx].type === 'html_block') {
+        state.tokens[blkIdx].content = replaceAllUnbalancedTags(state.tokens[blkIdx].content);
+        continue;
+      }
+      if (state.tokens[blkIdx].type !== 'inline') {
+        continue;
+      }
+      inlineTokens = state.tokens[blkIdx].children;
+      for (j = 0; j < inlineTokens.length; j++) {
+        if (inlineTokens[j].type === 'html_inline') {
+          inlineTokens[j].content = replaceAllUnbalancedTags(inlineTokens[j].content);
+        }
+      }
     }
-
-    state.src = src;
   }
 
-  md.core.ruler.after('normalize', 'sanitize_strip', stripTags);
-  md.core.ruler.after('sanitize_strip', 'sanitize_balance', balance);
+  md.core.ruler.after('linkify', 'sanitize_inline', sanitizeInlineAndBlock);
+  md.core.ruler.after('sanitize_inline', 'sanitize_balance', balance);
 };
