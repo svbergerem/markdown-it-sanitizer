@@ -14,6 +14,7 @@ module.exports = function sanitizer_plugin(md, options) {
   options = options ? options : {};
   var removeUnknown = (typeof options.removeUnknown !== 'undefined') ? options.removeUnknown : false;
   var removeUnbalanced = (typeof options.removeUnbalanced !== 'undefined') ? options.removeUnbalanced : false;
+  var runBalancer = false;
   var j;
 
 
@@ -70,12 +71,14 @@ module.exports = function sanitizer_plugin(md, options) {
         url   = match[1];
         // only http, https, ftp, mailto and xmpp are allowed for links
         if (/^(?:https?:\/\/|ftp:\/\/|mailto:|xmpp:)/i.test(url)) {
+          runBalancer = true;
           openTagCount[tagnameIndex] += 1;
           return '<a href="' + url + '" title="' + title + '" target="_blank">';
         }
       }
       match = /<\/a>/i.test(tag);
       if (match) {
+        runBalancer = true;
         openTagCount[tagnameIndex] -= 1;
         if (openTagCount[tagnameIndex] < 0) {
           removeTag[tagnameIndex] = true;
@@ -92,6 +95,7 @@ module.exports = function sanitizer_plugin(md, options) {
       // whitelisted tags
       match = tag.match(/<(\/?)(b|blockquote|code|em|h[1-6]|li|ol(?: start="\d+")?|p|pre|s|sub|sup|strong|ul)>/i);
       if (match && !/<\/ol start="\d+"/i.test(tag)) {
+        runBalancer = true;
         tagnameIndex = allowedTags.indexOf(match[2].toLowerCase().split(' ')[0]);
         if (match[1] === '/') {
           openTagCount[tagnameIndex] -= 1;
@@ -120,6 +124,7 @@ module.exports = function sanitizer_plugin(md, options) {
     // reset counts
     for (j = 0; j < allowedTags.length; j++) { openTagCount[j] = 0; }
     for (j = 0; j < allowedTags.length; j++) { removeTag[j] = false; }
+    runBalancer = false;
 
 
     for (blkIdx = 0; blkIdx < state.tokens.length; blkIdx++) {
@@ -144,7 +149,7 @@ module.exports = function sanitizer_plugin(md, options) {
   /////////////////////////////////////////////////////////////////////////////////////////////////
 
   function balance(state) {
-
+    if (runBalancer === false) { return; }
     var blkIdx, inlineTokens;
 
     function replaceUnbalancedTag(str, tagname) {
