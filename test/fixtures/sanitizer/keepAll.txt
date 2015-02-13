@@ -150,6 +150,11 @@ test</p></li></ul>
 </blockquote>
 .
 
+.
+<3 <->
+.
+<p>&lt;3 &lt;-&gt;</p>
+.
 
 
 unbalanced tags
@@ -181,6 +186,12 @@ unbalanced tags
 </a>
 .
 <p>&lt;/a&gt;</p>
+.
+
+.
+<ol start="31"><ol>test</ol>
+.
+&lt;ol start=&quot;31&quot;&gt;&lt;ol&gt;test&lt;/ol&gt;
 .
 
 
