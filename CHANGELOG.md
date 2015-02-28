@@ -1,3 +1,7 @@
+# 0.2.2
+
+* Only run balance for HTML input
+
 # 0.2.1
 
 * Refactor sanitizer, should be now one of the last rules
