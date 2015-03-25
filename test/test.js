@@ -65,7 +65,7 @@ describe('markdown-it-sanitizer', function () {
       .use(sub)
       .use(sup)
       .use(inline, 'link_new_window', 'link_open', function (tokens, idx) {
-        tokens[idx].target = '_blank';
+        tokens[idx].attrPush([ 'target', '_blank' ]);
       })
       .use(hashtag, {
         hashtagRegExp: '[\\u0080-\\uFFFF\\w\\-]+|<3',
