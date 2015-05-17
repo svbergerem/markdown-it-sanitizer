@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-sanitizer",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "sanitizer for markdown-it.",
   "keywords": [
     "markdown-it-plugin",
@@ -28,10 +28,10 @@
     "eslint-plugin-nodeca": "^1.0.0",
     "istanbul": "*",
     "lodash": "*",
-    "markdown-it": "~4.0.2",
+    "markdown-it": "~4.2.1",
     "markdown-it-testgen": "~0.1.4",
     "markdown-it-diaspora-mention": "^0.3.0",
-    "markdown-it-for-inline": "^0.1.0",
+    "markdown-it-for-inline": "^0.1.1",
     "markdown-it-hashtag": "^0.3.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
@@ -40,7 +40,6 @@
     "uglify-js": "*"
   },
   "dependencies": {
-    "url-regex": "^2.1.2"
   },
   "directories": {
     "test": "test"
