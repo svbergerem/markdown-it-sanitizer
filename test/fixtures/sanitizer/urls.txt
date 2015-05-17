@@ -85,3 +85,16 @@ links
 .
 <p>&lt;a href=&quot;data:example.com&quot;&gt;text&lt;/a&gt;</p>
 .
+
+issue #3
+.
+<a href="http://www.americanpsychiatricfoundation.org/get-involved/corporate-advisory-council" target="_blank">American Psychiatric Foundation</a>
+.
+<p>&lt;a href=&quot;http://www.americanpsychiatricfoundation.org/get-involved/corporate-advisory-council&quot; target=&quot;_blank&quot;&gt;American Psychiatric Foundation&lt;/a&gt;</p>
+.
+
+.
+<a href="http://www.americanpsychiatricfoundation.org/get-involved/corporate-advisory-council">American Psychiatric Foundation</a>
+.
+<p><a href="http://www.americanpsychiatricfoundation.org/get-involved/corporate-advisory-council" title="" target="_blank">American Psychiatric Foundation</a></p>
+.

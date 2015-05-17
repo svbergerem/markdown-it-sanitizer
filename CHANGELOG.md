@@ -1,3 +1,8 @@
+# 0.3.1
+
+* Remove url-regex dependency
+* Fix sanitizer freeze [#3](https://github.com/svbergerem/markdown-it-sanitizer/issues/3)
+
 # 0.3.0
 
 * Use markdown-it 4

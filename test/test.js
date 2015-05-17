@@ -21,6 +21,7 @@ describe('markdown-it-sanitizer', function () {
       typographer: true,
       linkify:     true
     });
+    md.linkify.add('xmpp:', 'mailto:');
   });
 
   it('sanitizes the input with default values (both false)', function () {

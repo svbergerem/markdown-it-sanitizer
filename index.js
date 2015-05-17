@@ -4,11 +4,7 @@
 
 module.exports = function sanitizer_plugin(md, options) {
 
-  var urlRegex = require('url-regex')({ exact: true })
-                 // take the regexp from url-regex
-                 .toString()
-                 // remove surrounding /(?:^ and $)/i
-                 .slice(5, -4),
+  var linkify = md.linkify,
       escapeHtml = md.utils.escapeHtml;
 
   options = options ? options : {};
@@ -25,7 +21,13 @@ module.exports = function sanitizer_plugin(md, options) {
   for (j = 0; j < allowedTags.length; j++) { openTagCount[j] = 0; }
   for (j = 0; j < allowedTags.length; j++) { removeTag[j] = false; }
 
-
+  function getUrl(link) {
+    var match = linkify.match(link);
+    if (match && match.length === 1 && match[0].index === 0 && match[0].lastIndex === link.length) {
+      return match[0].url;
+    }
+    return null;
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
   //          REPLACE UNKNOWN TAGS
@@ -33,10 +35,10 @@ module.exports = function sanitizer_plugin(md, options) {
 
   function replaceUnknownTags(str) {
     // <a href="url" title="(optional)"></a>
-    var patternLinkOpen = '<a\\shref="(' + urlRegex + ')"(?:\\stitle="([^"<>]*)")?>';
+    var patternLinkOpen = '<a\\shref="([^"<>]*)"(?:\\stitle="([^"<>]*)")?>';
     var regexpLinkOpen = RegExp(patternLinkOpen, 'i');
     // <img src="url" alt=""(optional) title=""(optional)>
-    var patternImage = '<img\\ssrc="(' + urlRegex + ')"(?:\\salt="([^"<>]*)")?(?:\\stitle="([^"<>]*)")?\\s?\\/?>';
+    var patternImage = '<img\\ssrc="([^"<>]*)"(?:\\salt="([^"<>]*)")?(?:\\stitle="([^"<>]*)")?\\s?\\/?>';
     var regexpImage = RegExp(patternImage, 'i');
 
     /*
@@ -54,11 +56,12 @@ module.exports = function sanitizer_plugin(md, options) {
       // images
       match = tag.match(regexpImage);
       if (match) {
-        url   = match[1];
+        url   = getUrl(match[1]);
         alt   = (typeof match[2] !== 'undefined') ? match[2] : '';
         title = (typeof match[3] !== 'undefined') ? match[3] : '';
+
         // only http and https are allowed for images
-        if (/^https?:\/\//i.test(url)) {
+        if (url && /^https?:\/\//i.test(url)) {
           return '<img src="' + url + '" alt="' + alt + '" title="' + title + '">';
         }
       }
@@ -68,9 +71,9 @@ module.exports = function sanitizer_plugin(md, options) {
       match = tag.match(regexpLinkOpen);
       if (match) {
         title = (typeof match[2] !== 'undefined') ? match[2] : '';
-        url   = match[1];
+        url   = getUrl(match[1]);
         // only http, https, ftp, mailto and xmpp are allowed for links
-        if (/^(?:https?:\/\/|ftp:\/\/|mailto:|xmpp:)/i.test(url)) {
+        if (url && /^(?:https?:\/\/|ftp:\/\/|mailto:|xmpp:)/i.test(url)) {
           runBalancer = true;
           openTagCount[tagnameIndex] += 1;
           return '<a href="' + url + '" title="' + title + '" target="_blank">';
@@ -155,7 +158,7 @@ module.exports = function sanitizer_plugin(md, options) {
     function replaceUnbalancedTag(str, tagname) {
       var openingRegexp, closingRegexp;
       if (tagname === 'a') {
-        openingRegexp = RegExp('<a href="' + urlRegex + '" title="[^"<>]*" target="_blank">', 'g');
+        openingRegexp = RegExp('<a href="[^"<>]*" title="[^"<>]*" target="_blank">', 'g');
       } else if (tagname === 'ol') {
         openingRegexp = /<ol(?: start="\d+")?>/g;
       } else {
