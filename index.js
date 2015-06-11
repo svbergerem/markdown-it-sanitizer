@@ -10,6 +10,7 @@ module.exports = function sanitizer_plugin(md, options) {
   options = options ? options : {};
   var removeUnknown = (typeof options.removeUnknown !== 'undefined') ? options.removeUnknown : false;
   var removeUnbalanced = (typeof options.removeUnbalanced !== 'undefined') ? options.removeUnbalanced : false;
+  var imageClass = (typeof options.imageClass !== 'undefined') ? options.imageClass : '';
   var runBalancer = false;
   var j;
 
@@ -62,6 +63,9 @@ module.exports = function sanitizer_plugin(md, options) {
 
         // only http and https are allowed for images
         if (url && /^https?:\/\//i.test(url)) {
+          if (imageClass !== '') {
+            return '<img src="' + url + '" alt="' + alt + '" title="' + title + '" class="' + imageClass + '">';
+          }
           return '<img src="' + url + '" alt="' + alt + '" title="' + title + '">';
         }
       }

@@ -1,3 +1,7 @@
+# 0.3.2
+
+* Added option imageClass
+
 # 0.3.1
 
 * Remove url-regex dependency

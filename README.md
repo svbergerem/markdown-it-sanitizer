@@ -48,11 +48,12 @@ md.render('<b>test<p></b>'); // => '<p><b>test</b></p>'
 
 #### Advanced
 
-For not whitelisted tags and tags that don't have a matching opening/closing tag you can define whether you would like to remove or escape them. Here is an example with default values:
+For not whitelisted tags and tags that don't have a matching opening/closing tag you can define whether you would like to remove or escape them. You can also define a class attribute that will be added to image tags. Here is an example with default values:
 
 ```js
 var md = require('markdown-it')({ html: true })
             .use(require('markdown-it-sanitizer'), {
+              imageClass: '',
               removeUnbalanced: false,
               removeUnknown: false
             });
@@ -66,6 +67,9 @@ md.render('<u>test</u>'); // => '<p>test</p>'
 md.render('<b>test</em>'); // => '<p>&lt;b&gt;test&lt;/em&gt;</p>'
 // unbalanced tags with removeUnbalanced: true
 md.render('<b>test</em>'); // => '<p>test</p>'
+
+// imageClass: 'img-responsive'
+md.render('<img src="http://example.com/image.png" alt="image" title="example">'); // => '<p><img src="http://example.com/image.png" alt="image" title="example" class="img-responsive"></p>'
 
 ```
 

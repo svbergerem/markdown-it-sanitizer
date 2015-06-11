@@ -44,6 +44,11 @@ describe('markdown-it-sanitizer', function () {
     generate(path.join(__dirname, 'fixtures/sanitizer/removeBoth.txt'), md);
   });
 
+  it('accepts imageClass as an option', function () {
+    md.use(require('../'), { imageClass: 'img-responsive' });
+    generate(path.join(__dirname, 'fixtures/sanitizer/imageClass.txt'), md);
+  });
+
   it('only accepts a few protocolls for urls', function () {
     md.use(require('../'));
     generate(path.join(__dirname, 'fixtures/sanitizer/urls.txt'), md);
