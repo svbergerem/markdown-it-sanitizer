@@ -2,37 +2,37 @@ images
 .
 <img src="http://example.com">
 .
-<p><img src="http://example.com" alt="" title=""></p>
+<img src="http://example.com" alt="" title="">
 .
 
 .
 <img src="https://example.com">
 .
-<p><img src="https://example.com" alt="" title=""></p>
+<img src="https://example.com" alt="" title="">
 .
 
 .
 <img src="ftp://example.com">
 .
-<p>&lt;img src=&quot;ftp://example.com&quot;&gt;</p>
+&lt;img src=&quot;ftp://example.com&quot;&gt;
 .
 
 .
 <img src="hhttp://example.com">
 .
-<p>&lt;img src=&quot;hhttp://example.com&quot;&gt;</p>
+&lt;img src=&quot;hhttp://example.com&quot;&gt;
 .
 
 .
 <img src="javascript://example.com">
 .
-<p>&lt;img src=&quot;javascript://example.com&quot;&gt;</p>
+&lt;img src=&quot;javascript://example.com&quot;&gt;
 .
 
 .
 <img src="javascript:example.com">
 .
-<p>&lt;img src=&quot;javascript:example.com&quot;&gt;</p>
+&lt;img src=&quot;javascript:example.com&quot;&gt;
 .
 
 

@@ -23,10 +23,10 @@ one<hr>two<hr/>three<Hr >four<hR />five
 <img src="https://example.com/image.png" >
 <img src="http://example.com/image.png" />
 .
-<p><img src="http://example.com/image.png" alt="" title="">
+<img src="http://example.com/image.png" alt="" title="">
 <img src="https://example.com/image.png" alt="" title="">
 <img src="https://example.com/image.png" alt="" title="">
-<img src="http://example.com/image.png" alt="" title=""></p>
+<img src="http://example.com/image.png" alt="" title="">
 .
 
 .
@@ -35,10 +35,10 @@ one<hr>two<hr/>three<Hr >four<hR />five
 <img src="https://example.com/image.png" alt="image" >
 <img src="http://example.com/image.png" alt="image" />
 .
-<p><img src="http://example.com/image.png" alt="image" title="">
+<img src="http://example.com/image.png" alt="image" title="">
 <img src="https://example.com/image.png" alt="image" title="">
 <img src="https://example.com/image.png" alt="image" title="">
-<img src="http://example.com/image.png" alt="image" title=""></p>
+<img src="http://example.com/image.png" alt="image" title="">
 .
 
 .
@@ -47,10 +47,10 @@ one<hr>two<hr/>three<Hr >four<hR />five
 <img src="https://example.com/image.png" title="example" >
 <img src="http://example.com/image.png" title="example" />
 .
-<p><img src="http://example.com/image.png" alt="" title="example">
+<img src="http://example.com/image.png" alt="" title="example">
 <img src="https://example.com/image.png" alt="" title="example">
 <img src="https://example.com/image.png" alt="" title="example">
-<img src="http://example.com/image.png" alt="" title="example"></p>
+<img src="http://example.com/image.png" alt="" title="example">
 .
 
 .
@@ -59,10 +59,10 @@ one<hr>two<hr/>three<Hr >four<hR />five
 <img src="https://example.com/image.png" alt="image" title="example" >
 <img src="http://example.com/image.png" alt="image" title="example" />
 .
-<p><img src="http://example.com/image.png" alt="image" title="example">
+<img src="http://example.com/image.png" alt="image" title="example">
 <img src="https://example.com/image.png" alt="image" title="example">
 <img src="https://example.com/image.png" alt="image" title="example">
-<img src="http://example.com/image.png" alt="image" title="example"></p>
+<img src="http://example.com/image.png" alt="image" title="example">
 .
 
 
@@ -172,15 +172,15 @@ t
 .
 
 .
-<a href="http://example.com">
+<a href="http://example.com">b
 .
-<p></p>
+<p>b</p>
 .
 
 .
-</a>
+</a>b
 .
-<p></p>
+<p>b</p>
 .
 
 

@@ -23,10 +23,10 @@ one<hr>two<hr/>three<Hr >four<hR />five
 <img src="https://example.com/image.png" >
 <img src="http://example.com/image.png" />
 .
-<p><img src="http://example.com/image.png" alt="" title="" class="img-responsive">
+<img src="http://example.com/image.png" alt="" title="" class="img-responsive">
 <img src="https://example.com/image.png" alt="" title="" class="img-responsive">
 <img src="https://example.com/image.png" alt="" title="" class="img-responsive">
-<img src="http://example.com/image.png" alt="" title="" class="img-responsive"></p>
+<img src="http://example.com/image.png" alt="" title="" class="img-responsive">
 .
 
 .
@@ -35,10 +35,10 @@ one<hr>two<hr/>three<Hr >four<hR />five
 <img src="https://example.com/image.png" alt="image" >
 <img src="http://example.com/image.png" alt="image" />
 .
-<p><img src="http://example.com/image.png" alt="image" title="" class="img-responsive">
+<img src="http://example.com/image.png" alt="image" title="" class="img-responsive">
 <img src="https://example.com/image.png" alt="image" title="" class="img-responsive">
 <img src="https://example.com/image.png" alt="image" title="" class="img-responsive">
-<img src="http://example.com/image.png" alt="image" title="" class="img-responsive"></p>
+<img src="http://example.com/image.png" alt="image" title="" class="img-responsive">
 .
 
 .
@@ -47,10 +47,10 @@ one<hr>two<hr/>three<Hr >four<hR />five
 <img src="https://example.com/image.png" title="example" >
 <img src="http://example.com/image.png" title="example" />
 .
-<p><img src="http://example.com/image.png" alt="" title="example" class="img-responsive">
+<img src="http://example.com/image.png" alt="" title="example" class="img-responsive">
 <img src="https://example.com/image.png" alt="" title="example" class="img-responsive">
 <img src="https://example.com/image.png" alt="" title="example" class="img-responsive">
-<img src="http://example.com/image.png" alt="" title="example" class="img-responsive"></p>
+<img src="http://example.com/image.png" alt="" title="example" class="img-responsive">
 .
 
 .
@@ -59,10 +59,10 @@ one<hr>two<hr/>three<Hr >four<hR />five
 <img src="https://example.com/image.png" alt="image" title="example" >
 <img src="http://example.com/image.png" alt="image" title="example" />
 .
-<p><img src="http://example.com/image.png" alt="image" title="example" class="img-responsive">
+<img src="http://example.com/image.png" alt="image" title="example" class="img-responsive">
 <img src="https://example.com/image.png" alt="image" title="example" class="img-responsive">
 <img src="https://example.com/image.png" alt="image" title="example" class="img-responsive">
-<img src="http://example.com/image.png" alt="image" title="example" class="img-responsive"></p>
+<img src="http://example.com/image.png" alt="image" title="example" class="img-responsive">
 .
 
 
@@ -179,13 +179,13 @@ unbalanced tags
 .
 <a href="http://example.com">
 .
-<p>&lt;a href=&quot;http://example.com&quot; title=&quot;&quot; target=&quot;_blank&quot;&gt;</p>
+&lt;a href=&quot;http://example.com&quot; title=&quot;&quot; target=&quot;_blank&quot;&gt;
 .
 
 .
 </a>
 .
-<p>&lt;/a&gt;</p>
+&lt;/a&gt;
 .
 
 .
