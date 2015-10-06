@@ -1,0 +1,210 @@
+Coverage. Youtube from ID
+.
+@[youtube](dQw4w9WgXcQ)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"></iframe></div></p>
+.
+.
+@[youtube](x) a
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/x" frameborder="0"></iframe></div>a</p>
+.
+.
+@[youtube](x)
+a
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/x" frameborder="0"></iframe></div>a</p>
+.
+.
+a @[youtube](x)
+.
+<p>a <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/x" frameborder="0"></iframe></div></p>
+.
+.
+@[youtube]( x)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/x" frameborder="0"></iframe></div></p>
+.
+.
+@[youtube]( x )
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/x" frameborder="0"></iframe></div></p>
+.
+.
+@[youtube](
+x )
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/x" frameborder="0"></iframe></div></p>
+.
+.
+@[youtube](
+x
+ )
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/x" frameborder="0"></iframe></div></p>
+.
+.
+@[]youtube()
+.
+<p>@[]youtube()</p>
+.
+.
+@[youtube]()
+.
+<p></p>
+.
+.
+@[yourtube](x)
+.
+<p>@<a href="x">yourtube</a></p>
+.
+.
+@[(youtube]
+.
+<p>@[(youtube]</p>
+.
+.
+@[toc]()
+.
+<p>@<a href="">toc</a></p>
+.
+
+Coverage. Youtube from URL
+.
+@[youtube]( //www.youtube.com/embed/dQw4w9WgXcQ )
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"></iframe></div></p>
+.
+.
+@[youtube]( //www.youtube.com/watch?v=0zM3nApSvMg&feature=feedrec_grec_index
+ )
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/0zM3nApSvMg" frameborder="0"></iframe></div></p>
+.
+.
+@[youtube](//www.youtube.com/user/IngridMichaelsonVEVO#p/a/u/1/QdK8U-VIH_o)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/QdK8U-VIH_o" frameborder="0"></iframe></div></p>
+.
+.
+@[youtube](//www.youtube.com/v/0zM3nApSvMg?fs=1&amp;hl=en_US&amp;rel=0)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/0zM3nApSvMg" frameborder="0"></iframe></div></p>
+.
+.
+@[youtube](//www.youtube.com/watch?v=0zM3nApSvMg#t=0m10s)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/0zM3nApSvMg" frameborder="0"></iframe></div></p>
+.
+.
+@[youtube](//www.youtube.com/embed/0zM3nApSvMg?rel=0)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/0zM3nApSvMg" frameborder="0"></iframe></div></p>
+.
+.
+@[youtube](//www.youtube.com/watch?v=0zM3nApSvMg)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/0zM3nApSvMg" frameborder="0"></iframe></div></p>
+.
+.
+@[youtube](http://youtu.be/0zM3nApSvMg)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="ytplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/0zM3nApSvMg" frameborder="0"></iframe></div></p>
+.
+
+Coverage. Vimeo from ID
+.
+@[vimeo](x)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/x" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vimeo]( x)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/x" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vimeo]( x )
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/x" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vimeo](
+x )
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/x" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vimeo](
+x
+ )
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/x" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[]vimeo()
+.
+<p>@[]vimeo()</p>
+.
+.
+@[vimeo]()
+.
+<p></p>
+.
+.
+@[vimoe](x)
+.
+<p>@<a href="x">vimoe</a></p>
+.
+.
+@[(vimeo]
+.
+<p>@[(vimeo]</p>
+.
+.
+@[toc]()
+.
+<p>@<a href="">toc</a></p>
+.
+
+Coverage. Vimeo from URL
+.
+@[vimeo]( https://vimeo.com/119932781 )
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/119932781" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vimeo](http://vimeo.com/119932781 )
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/119932781" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vimeo](https://www.vimeo.com/119932781)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/119932781" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vimeo](http://vimeo.com/channels/mychannel/119932781)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/119932781" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vimeo](https://vimeo.com/groups/staffpicks/videos/119932781)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/119932781" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vimeo](http://vimeo.com/album/2222222/video/119932781)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/119932781" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vimeo](https://vimeo.com/119932781?param=test)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/119932781" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
+.
+@[vimeo](http://player.vimeo.com/119932781)
+.
+<p><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="vimeoplayer" width="500" height="281" src="//player.vimeo.com/video/119932781" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
