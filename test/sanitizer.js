@@ -9,8 +9,6 @@ var markdownIt = require('markdown-it'),
     hashtag    = require('markdown-it-hashtag'),
     mention    = require('markdown-it-diaspora-mention');
 
-/*eslint-env mocha*/
-
 describe('markdown-it-sanitizer', function () {
   var md;
 

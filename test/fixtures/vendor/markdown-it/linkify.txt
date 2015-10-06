@@ -22,14 +22,6 @@ don't touch text in autolinks
 .
 
 
-don't touch text in html <a> tags
-.
-<a href="https://example.com">https://example.com</a>
-.
-<p><a href="https://example.com">https://example.com</a></p>
-.
-
-
 match links without protocol
 .
 www.example.org

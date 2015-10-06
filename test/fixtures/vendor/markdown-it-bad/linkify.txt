@@ -1,0 +1,7 @@
+don't touch text in html <a> tags
+.
+<a href="https://example.com">https://example.com</a>
+.
+<p><a href="https://example.com">https://example.com</a></p>
+.
+
