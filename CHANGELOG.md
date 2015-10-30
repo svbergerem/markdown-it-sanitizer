@@ -1,3 +1,7 @@
+# 0.4.1
+
+* Allow arbitrary attributes for image tags
+
 # 0.4.0
 
 * Update markdown-it to 5.0.0

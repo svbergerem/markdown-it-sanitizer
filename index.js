@@ -39,7 +39,7 @@ module.exports = function sanitizer_plugin(md, options) {
     var patternLinkOpen = '<a\\shref="([^"<>]*)"(?:\\stitle="([^"<>]*)")?>';
     var regexpLinkOpen = RegExp(patternLinkOpen, 'i');
     // <img src="url" alt=""(optional) title=""(optional)>
-    var patternImage = '<img\\ssrc="([^"<>]*)"(?:\\salt="([^"<>]*)")?(?:\\stitle="([^"<>]*)")?\\s?\\/?>';
+    var patternImage = '<img\\s([^<>]*src="[^"<>]*"[^<>]*)\\s?\\/?>';
     var regexpImage = RegExp(patternImage, 'i');
 
     /*
@@ -57,9 +57,12 @@ module.exports = function sanitizer_plugin(md, options) {
       // images
       match = tag.match(regexpImage);
       if (match) {
-        url   = getUrl(match[1]);
-        alt   = (typeof match[2] !== 'undefined') ? match[2] : '';
-        title = (typeof match[3] !== 'undefined') ? match[3] : '';
+        var attrs = match[1];
+        url   = getUrl(attrs.match(/src="([^"<>]*)"/i)[1]);
+        alt   = attrs.match(/alt="([^"<>]*)"/i);
+        alt   = (alt && typeof alt[1] !== 'undefined') ? alt[1] : '';
+        title = attrs.match(/title="([^"<>]*)"/i);
+        title = (title && typeof title[1] !== 'undefined') ? title[1] : '';
 
         // only http and https are allowed for images
         if (url && /^https?:\/\//i.test(url)) {

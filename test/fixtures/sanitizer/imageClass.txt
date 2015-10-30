@@ -65,6 +65,20 @@ one<hr>two<hr/>three<Hr >four<hR />five
 <img src="http://example.com/image.png" alt="image" title="example" class="img-responsive">
 .
 
+.
+<img alt="image" src="http://example.com/image.png" title="example">
+<img title="example" src="https://example.com/image.png" alt="image">
+<img alt="image" title="example" src="https://example.com/image.png">
+<img title="example" alt="image" src="http://example.com/image.png">
+<img width="12px" height="20px" title="example" alt="image" src="http://example.com/image.png">
+.
+<img src="http://example.com/image.png" alt="image" title="example" class="img-responsive">
+<img src="https://example.com/image.png" alt="image" title="example" class="img-responsive">
+<img src="https://example.com/image.png" alt="image" title="example" class="img-responsive">
+<img src="http://example.com/image.png" alt="image" title="example" class="img-responsive">
+<img src="http://example.com/image.png" alt="image" title="example" class="img-responsive">
+.
+
 
 
 <a href=...>
