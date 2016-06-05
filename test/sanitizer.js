@@ -57,15 +57,15 @@ describe('markdown-it-sanitizer', function () {
     generate(path.join(__dirname, 'fixtures/sanitizer/notags.txt'), md);
   });
 
-  it('works with other plugins on real world examples', function() {
+  it('works with other plugins on real world examples', function () {
     md.use(require('../'), { removeUnbalanced: false, removeUnknown: false })
       .set({ breaks: true })
       .use(inline, 'utf8_symbols', 'text', function (tokens, idx) {
-          tokens[idx].content = tokens[idx].content.replace(/<->/g, '↔')
-                                                   .replace(/<-/g,  '←')
-                                                   .replace(/->/g,  '→')
-                                                   .replace(/<3/g,  '♥');
-        })
+        tokens[idx].content = tokens[idx].content.replace(/<->/g, '↔')
+                                                 .replace(/<-/g,  '←')
+                                                 .replace(/->/g,  '→')
+                                                 .replace(/<3/g,  '♥');
+      })
       .use(sub)
       .use(sup)
       .use(inline, 'link_new_window', 'link_open', function (tokens, idx) {

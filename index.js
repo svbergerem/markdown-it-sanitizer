@@ -176,8 +176,8 @@ module.exports = function sanitizer_plugin(md, options) {
         str = str.replace(openingRegexp, '');
         str = str.replace(closingRegexp, '');
       } else {
-        str = str.replace(openingRegexp, function(m) { return escapeHtml(m); });
-        str = str.replace(closingRegexp, function(m) { return escapeHtml(m); });
+        str = str.replace(openingRegexp, function (m) { return escapeHtml(m); });
+        str = str.replace(closingRegexp, function (m) { return escapeHtml(m); });
       }
       return str;
     }

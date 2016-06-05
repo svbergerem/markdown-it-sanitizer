@@ -1,0 +1,7 @@
+.
+Def Leppard ("Lets get rocked")
+@[youtube](https://youtu.be/BO1Nae_EBvQ)
+.
+<p>Def Leppard (&quot;Lets get rocked&quot;)
+<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="youtubeplayer" type="text/html" width="640" height="390" src="//www.youtube.com/embed/BO1Nae_EBvQ" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></p>
+.
