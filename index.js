@@ -12,8 +12,8 @@ module.exports = function sanitizer_plugin(md, options) {
       // <img src="url" alt=""(optional) title=""(optional)>
       patternImage = '<img\\s([^<>]*src="[^"<>]*"[^<>]*)\\s?\\/?>',
       regexpImage = RegExp(patternImage, 'i'),
-      regexpImageProtocols = /^https?:\/\//i,
-      regexpLinkProtocols = /^(?:https?:\/\/|ftp:\/\/|mailto:|xmpp:)/i;
+      regexpImageProtocols = /^(?:https?:)?\/\//i,
+      regexpLinkProtocols = /^(?:https?:\/\/|ftp:\/\/|\/\/|mailto:|xmpp:)/i;
 
   options = options ? options : {};
   var removeUnknown = (typeof options.removeUnknown !== 'undefined') ? options.removeUnknown : false;

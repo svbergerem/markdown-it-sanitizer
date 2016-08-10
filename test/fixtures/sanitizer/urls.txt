@@ -12,6 +12,18 @@ images
 .
 
 .
+<img src="//example.com">
+.
+<img src="//example.com" alt="" title="">
+.
+
+.
+<img src="example.com">
+.
+<img src="http://example.com" alt="" title="">
+.
+
+.
 <img src="ftp://example.com">
 .
 &lt;img src=&quot;ftp://example.com&quot;&gt;
@@ -21,6 +33,12 @@ images
 <img src="hhttp://example.com">
 .
 &lt;img src=&quot;hhttp://example.com&quot;&gt;
+.
+
+.
+<img src="/example.com">
+.
+&lt;img src=&quot;/example.com&quot;&gt;
 .
 
 .
@@ -51,6 +69,18 @@ links
 .
 
 .
+<a href="//example.com">text</a>
+.
+<p><a href="//example.com" title="" target="_blank">text</a></p>
+.
+
+.
+<a href="example.com">text</a>
+.
+<p><a href="http://example.com" title="" target="_blank">text</a></p>
+.
+
+.
 <a href="ftp://example.com">text</a>
 .
 <p><a href="ftp://example.com" title="" target="_blank">text</a></p>
@@ -66,6 +96,12 @@ links
 <a href="xmpp:user@example.com">text</a>
 .
 <p><a href="xmpp:user@example.com" title="" target="_blank">text</a></p>
+.
+
+.
+<a href="/example.com">text</a>
+.
+<p>&lt;a href=&quot;/example.com&quot;&gt;text&lt;/a&gt;</p>
 .
 
 .
