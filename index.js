@@ -5,7 +5,15 @@
 module.exports = function sanitizer_plugin(md, options) {
 
   var linkify = md.linkify,
-      escapeHtml = md.utils.escapeHtml;
+      escapeHtml = md.utils.escapeHtml,
+      // <a href="url" title="(optional)"></a>
+      patternLinkOpen = '<a\\shref="([^"<>]*)"(?:\\stitle="([^"<>]*)")?>',
+      regexpLinkOpen = RegExp(patternLinkOpen, 'i'),
+      // <img src="url" alt=""(optional) title=""(optional)>
+      patternImage = '<img\\s([^<>]*src="[^"<>]*"[^<>]*)\\s?\\/?>',
+      regexpImage = RegExp(patternImage, 'i'),
+      regexpImageProtocols = /^https?:\/\//i,
+      regexpLinkProtocols = /^(?:https?:\/\/|ftp:\/\/|mailto:|xmpp:)/i;
 
   options = options ? options : {};
   var removeUnknown = (typeof options.removeUnknown !== 'undefined') ? options.removeUnknown : false;
@@ -35,13 +43,6 @@ module.exports = function sanitizer_plugin(md, options) {
   /////////////////////////////////////////////////////////////////////////////////////////////////
 
   function replaceUnknownTags(str) {
-    // <a href="url" title="(optional)"></a>
-    var patternLinkOpen = '<a\\shref="([^"<>]*)"(?:\\stitle="([^"<>]*)")?>';
-    var regexpLinkOpen = RegExp(patternLinkOpen, 'i');
-    // <img src="url" alt=""(optional) title=""(optional)>
-    var patternImage = '<img\\s([^<>]*src="[^"<>]*"[^<>]*)\\s?\\/?>';
-    var regexpImage = RegExp(patternImage, 'i');
-
     /*
      * it starts with '<' and maybe ends with '>',
      * maybe has a '<' on the right
@@ -65,7 +66,7 @@ module.exports = function sanitizer_plugin(md, options) {
         title = (title && typeof title[1] !== 'undefined') ? title[1] : '';
 
         // only http and https are allowed for images
-        if (url && /^https?:\/\//i.test(url)) {
+        if (url && regexpImageProtocols.test(url)) {
           if (imageClass !== '') {
             return '<img src="' + url + '" alt="' + alt + '" title="' + title + '" class="' + imageClass + '">';
           }
@@ -80,7 +81,7 @@ module.exports = function sanitizer_plugin(md, options) {
         title = (typeof match[2] !== 'undefined') ? match[2] : '';
         url   = getUrl(match[1]);
         // only http, https, ftp, mailto and xmpp are allowed for links
-        if (url && /^(?:https?:\/\/|ftp:\/\/|mailto:|xmpp:)/i.test(url)) {
+        if (url && regexpLinkProtocols.test(url)) {
           runBalancer = true;
           openTagCount[tagnameIndex] += 1;
           return '<a href="' + url + '" title="' + title + '" target="_blank">';
