@@ -1,3 +1,7 @@
+# 0.4.2
+
+* Allow image and link urls starting with //
+
 # 0.4.1
 
 * Allow arbitrary attributes for image tags

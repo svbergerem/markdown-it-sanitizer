@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-sanitizer",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "sanitizer for markdown-it.",
   "keywords": [
     "markdown-it-plugin",

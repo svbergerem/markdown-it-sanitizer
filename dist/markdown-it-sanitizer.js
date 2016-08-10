@@ -1,4 +1,4 @@
-/*! markdown-it-sanitizer 0.4.1 https://github.com/svbergerem/markdown-it-sanitizer @license MIT */(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.markdownitSanitizer = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/*! markdown-it-sanitizer 0.4.2 https://github.com/svbergerem/markdown-it-sanitizer @license MIT */(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.markdownitSanitizer = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 // Sanitizer
 
 'use strict';
@@ -6,7 +6,15 @@
 module.exports = function sanitizer_plugin(md, options) {
 
   var linkify = md.linkify,
-      escapeHtml = md.utils.escapeHtml;
+      escapeHtml = md.utils.escapeHtml,
+      // <a href="url" title="(optional)"></a>
+      patternLinkOpen = '<a\\shref="([^"<>]*)"(?:\\stitle="([^"<>]*)")?>',
+      regexpLinkOpen = RegExp(patternLinkOpen, 'i'),
+      // <img src="url" alt=""(optional) title=""(optional)>
+      patternImage = '<img\\s([^<>]*src="[^"<>]*"[^<>]*)\\s?\\/?>',
+      regexpImage = RegExp(patternImage, 'i'),
+      regexpImageProtocols = /^(?:https?:)?\/\//i,
+      regexpLinkProtocols = /^(?:https?:\/\/|ftp:\/\/|\/\/|mailto:|xmpp:)/i;
 
   options = options ? options : {};
   var removeUnknown = (typeof options.removeUnknown !== 'undefined') ? options.removeUnknown : false;
@@ -36,13 +44,6 @@ module.exports = function sanitizer_plugin(md, options) {
   /////////////////////////////////////////////////////////////////////////////////////////////////
 
   function replaceUnknownTags(str) {
-    // <a href="url" title="(optional)"></a>
-    var patternLinkOpen = '<a\\shref="([^"<>]*)"(?:\\stitle="([^"<>]*)")?>';
-    var regexpLinkOpen = RegExp(patternLinkOpen, 'i');
-    // <img src="url" alt=""(optional) title=""(optional)>
-    var patternImage = '<img\\s([^<>]*src="[^"<>]*"[^<>]*)\\s?\\/?>';
-    var regexpImage = RegExp(patternImage, 'i');
-
     /*
      * it starts with '<' and maybe ends with '>',
      * maybe has a '<' on the right
@@ -66,7 +67,7 @@ module.exports = function sanitizer_plugin(md, options) {
         title = (title && typeof title[1] !== 'undefined') ? title[1] : '';
 
         // only http and https are allowed for images
-        if (url && /^https?:\/\//i.test(url)) {
+        if (url && regexpImageProtocols.test(url)) {
           if (imageClass !== '') {
             return '<img src="' + url + '" alt="' + alt + '" title="' + title + '" class="' + imageClass + '">';
           }
@@ -81,7 +82,7 @@ module.exports = function sanitizer_plugin(md, options) {
         title = (typeof match[2] !== 'undefined') ? match[2] : '';
         url   = getUrl(match[1]);
         // only http, https, ftp, mailto and xmpp are allowed for links
-        if (url && /^(?:https?:\/\/|ftp:\/\/|mailto:|xmpp:)/i.test(url)) {
+        if (url && regexpLinkProtocols.test(url)) {
           runBalancer = true;
           openTagCount[tagnameIndex] += 1;
           return '<a href="' + url + '" title="' + title + '" target="_blank">';
@@ -177,8 +178,8 @@ module.exports = function sanitizer_plugin(md, options) {
         str = str.replace(openingRegexp, '');
         str = str.replace(closingRegexp, '');
       } else {
-        str = str.replace(openingRegexp, function(m) { return escapeHtml(m); });
-        str = str.replace(closingRegexp, function(m) { return escapeHtml(m); });
+        str = str.replace(openingRegexp, function (m) { return escapeHtml(m); });
+        str = str.replace(closingRegexp, function (m) { return escapeHtml(m); });
       }
       return str;
     }
