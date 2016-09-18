@@ -22,21 +22,21 @@
     "test": "make test"
   },
   "devDependencies": {
-    "browserify": "*",
+    "browserify": "^13.1.0",
     "chai": "^3.5.0",
-    "coveralls": "^2.11.9",
+    "coveralls": "^2.11.13",
     "eslint": "2.11.1",
-    "istanbul": "*",
-    "markdown-it": "~6.0.5",
-    "markdown-it-testgen": "~0.1.4",
-    "markdown-it-diaspora-mention": "^0.4.0",
+    "istanbul": "^0.4.5",
+    "markdown-it": "^8.0.0",
+    "markdown-it-diaspora-mention": "^1.0.0",
     "markdown-it-for-inline": "^0.1.1",
     "markdown-it-hashtag": "^0.4.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
+    "markdown-it-testgen": "~0.1.4",
     "markdown-it-video": "^0.4.0",
-    "mocha": "*",
-    "uglify-js": "*"
+    "mocha": "^3.0.2",
+    "uglify-js": "^2.7.3"
   },
   "dependencies": {},
   "directories": {
