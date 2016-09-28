@@ -1,7 +1,7 @@
 {
   "name": "markdown-it-sanitizer",
   "main": "dist/markdown-it-sanitizer.js",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "sanitizer for markdown-it.",
   "keywords": [
     "markdown-it-plugin",
