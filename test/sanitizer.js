@@ -24,27 +24,37 @@ describe('markdown-it-sanitizer', function () {
 
   it('sanitizes the input with default values (both false)', function () {
     md.use(require('../'));
+    generate(path.join(__dirname, 'fixtures/sanitizer/base.txt'), md);
+    generate(path.join(__dirname, 'fixtures/sanitizer/imagesBase.txt'), md);
     generate(path.join(__dirname, 'fixtures/sanitizer/keepAll.txt'), md);
   });
 
   it('accepts removeUnknown as an option', function () {
     md.use(require('../'), { removeUnbalanced: false, removeUnknown: true });
+    generate(path.join(__dirname, 'fixtures/sanitizer/base.txt'), md);
+    generate(path.join(__dirname, 'fixtures/sanitizer/imagesBase.txt'), md);
     generate(path.join(__dirname, 'fixtures/sanitizer/removeUnknown.txt'), md);
   });
 
   it('accepts removeUnbalanced as an option', function () {
     md.use(require('../'), { removeUnbalanced: true, removeUnknown: false });
+    generate(path.join(__dirname, 'fixtures/sanitizer/base.txt'), md);
+    generate(path.join(__dirname, 'fixtures/sanitizer/imagesBase.txt'), md);
     generate(path.join(__dirname, 'fixtures/sanitizer/removeUnbalanced.txt'), md);
   });
 
   it('accepts removeUnknown and removeUnbalanced as options', function () {
     md.use(require('../'), { removeUnbalanced: true, removeUnknown: true });
+    generate(path.join(__dirname, 'fixtures/sanitizer/base.txt'), md);
+    generate(path.join(__dirname, 'fixtures/sanitizer/imagesBase.txt'), md);
     generate(path.join(__dirname, 'fixtures/sanitizer/removeBoth.txt'), md);
   });
 
   it('accepts imageClass as an option', function () {
     md.use(require('../'), { imageClass: 'img-responsive' });
-    generate(path.join(__dirname, 'fixtures/sanitizer/imageClass.txt'), md);
+    generate(path.join(__dirname, 'fixtures/sanitizer/base.txt'), md);
+    generate(path.join(__dirname, 'fixtures/sanitizer/imagesClass.txt'), md);
+    generate(path.join(__dirname, 'fixtures/sanitizer/keepAll.txt'), md);
   });
 
   it('only accepts a few protocolls for urls', function () {

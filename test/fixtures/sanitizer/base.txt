@@ -1,0 +1,95 @@
+<br>
+.
+one<br>two<br/>three<Br >four<bR />five
+.
+<p>one<br>two<br>three<br>four<br>five</p>
+.
+
+
+
+<hr>
+.
+one<hr>two<hr/>three<Hr >four<hR />five
+.
+<p>one<hr>two<hr>three<hr>four<hr>five</p>
+.
+
+
+
+<a href=...>
+.
+<a href="http://example.com">text</a>
+<a href="http://example.com" class="link">linktext with class</a>
+<a href="https://example.com/" title="example">**text** _link_ </a>
+.
+<p><a href="http://example.com" title="" target="_blank">text</a>
+<a href="http://example.com" title="" target="_blank">linktext with class</a>
+<a href="https://example.com/" title="example" target="_blank"><strong>text</strong> <em>link</em> </a></p>
+.
+
+
+
+balanced tags
+.
+<b>text</b>
+<blockquote>text</blockquote>
+<code>text</code>
+<em>text</em>
+<h1>text</h1>
+<h2>text</h2>
+<h3>text</h3>
+<h4>text</h4>
+<h5>text</h5>
+<h6>text</h6>
+.
+<p><b>text</b></p>
+<blockquote>text</blockquote>
+<code>text</code>
+<em>text</em>
+<h1>text</h1>
+<h2>text</h2>
+<h3>text</h3>
+<h4>text</h4>
+<h5>text</h5>
+<h6>text</h6>
+.
+
+.
+<li>text</li>
+<ol>text</ol>
+<ol start="42">text</ol>
+<p>text</p>
+<pre>text</pre>
+<s>text</s>
+<sub>text</sub>
+<sup>text</sup>
+<strong>text</strong>
+<ul>text</ul>
+.
+<li>text</li>
+<ol>text</ol>
+<ol start="42">text</ol>
+<p>text</p>
+<pre>text</pre>
+<s>text</s>
+<sub>text</sub>
+<sup>text</sup>
+<strong>text</strong>
+<ul>text</ul>
+.
+
+.
+<bloCKquOte><UL>
+
+<li>text</li>
+<li><p>
+
+test</p></li></ul>
+</blockquote>
+.
+<blockquote><ul>
+<li>text</li>
+<li><p>
+<p>test</p></li></ul></p>
+</blockquote>
+.
