@@ -28,7 +28,7 @@
     "eslint": "2.11.1",
     "istanbul": "^0.4.5",
     "markdown-it": "^8.0.0",
-    "markdown-it-diaspora-mention": "^1.0.0",
+    "markdown-it-diaspora-mention": "^0.4.0",
     "markdown-it-for-inline": "^0.1.1",
     "markdown-it-hashtag": "^0.4.0",
     "markdown-it-sub": "^1.0.0",
