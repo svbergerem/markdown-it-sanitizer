@@ -85,9 +85,11 @@ one<hr>two<hr/>three<Hr >four<hR />five
 <a href=...>
 .
 <a href="http://example.com">text</a>
+<a href="http://example.com" class="link">linktext with class</a>
 <a href="https://example.com/" title="example">**text** _link_ </a>
 .
 <p><a href="http://example.com" title="" target="_blank">text</a>
+<a href="http://example.com" title="" target="_blank">linktext with class</a>
 <a href="https://example.com/" title="example" target="_blank"><strong>text</strong> <em>link</em> </a></p>
 .
 
@@ -210,12 +212,6 @@ unknown tags
 <p class="test"></p>
 .
 &lt;/p&gt;
-.
-
-.
-<a href="http://example.com" class="link">text</a>
-.
-<p>text&lt;/a&gt;</p>
 .
 
 .

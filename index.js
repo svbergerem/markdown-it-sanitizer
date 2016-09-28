@@ -7,7 +7,7 @@ module.exports = function sanitizer_plugin(md, options) {
   var linkify = md.linkify,
       escapeHtml = md.utils.escapeHtml,
       // <a href="url" title="(optional)"></a>
-      patternLinkOpen = '<a\\shref="([^"<>]*)"(?:\\stitle="([^"<>]*)")?>',
+      patternLinkOpen = '<a\\s([^<>]*href="[^"<>]*"[^<>]*)\\s?>',
       regexpLinkOpen = RegExp(patternLinkOpen, 'i'),
       // <img src="url" alt=""(optional) title=""(optional)>
       patternImage = '<img\\s([^<>]*src="[^"<>]*"[^<>]*)\\s?\\/?>',
@@ -50,7 +50,7 @@ module.exports = function sanitizer_plugin(md, options) {
      * -> it's a tag!
      */
     str = str.replace(/<[^<>]*>?/gi, function (tag) {
-      var match, url, alt, title, tagnameIndex;
+      var match, attrs, url, alt, title, tagnameIndex;
 
       // '<->', '<- ' and '<3 ' look nice, they are harmless
       if (/(^<->|^<-\s|^<3\s)/.test(tag)) { return tag; }
@@ -58,7 +58,7 @@ module.exports = function sanitizer_plugin(md, options) {
       // images
       match = tag.match(regexpImage);
       if (match) {
-        var attrs = match[1];
+        attrs = match[1];
         url   = getUrl(attrs.match(/src="([^"<>]*)"/i)[1]);
         alt   = attrs.match(/alt="([^"<>]*)"/i);
         alt   = (alt && typeof alt[1] !== 'undefined') ? alt[1] : '';
@@ -78,8 +78,10 @@ module.exports = function sanitizer_plugin(md, options) {
       tagnameIndex = allowedTags.indexOf('a');
       match = tag.match(regexpLinkOpen);
       if (match) {
-        title = (typeof match[2] !== 'undefined') ? match[2] : '';
-        url   = getUrl(match[1]);
+        attrs = match[1];
+        url   = getUrl(attrs.match(/href="([^"<>]*)"/i)[1]);
+        title = attrs.match(/title="([^"<>]*)"/i);
+        title = (title && typeof title[1] !== 'undefined') ? title[1] : '';
         // only http, https, ftp, mailto and xmpp are allowed for links
         if (url && regexpLinkProtocols.test(url)) {
           runBalancer = true;

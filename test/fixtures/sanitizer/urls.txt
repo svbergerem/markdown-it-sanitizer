@@ -126,7 +126,7 @@ issue #3
 .
 <a href="http://www.americanpsychiatricfoundation.org/get-involved/corporate-advisory-council" target="_blank">American Psychiatric Foundation</a>
 .
-<p>&lt;a href=&quot;http://www.americanpsychiatricfoundation.org/get-involved/corporate-advisory-council&quot; target=&quot;_blank&quot;&gt;American Psychiatric Foundation&lt;/a&gt;</p>
+<p><a href="http://www.americanpsychiatricfoundation.org/get-involved/corporate-advisory-council" title="" target="_blank">American Psychiatric Foundation</a></p>
 .
 
 .
